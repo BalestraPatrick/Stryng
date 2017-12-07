@@ -10,6 +10,12 @@ import Foundation
 
 extension String {
 
+    // String[1]
+    public subscript(index: Int) -> Character? {
+        guard let stringIndex = self.index(startIndex, offsetBy: index, limitedBy: endIndex) else { return nil }
+        return self[stringIndex]
+    }
+
     // String[0..<1]
     public subscript(range: Range<Int>) -> Substring? {
         guard let left = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex) else { return nil }

@@ -12,6 +12,11 @@ import Stryng
 
 class StryngTests: XCTestCase {
 
+    func testSubscriptIndex() {
+        let example = "Example"
+        XCTAssertEqual(example[1], "x")
+    }
+
     func testSubscriptRange() {
         let example = "Example"
         XCTAssertEqual(example[0..<2], "Ex")
@@ -162,7 +167,8 @@ class StryngTests: XCTestCase {
     }
     
     static var allTests = [
-        ("testSubscript", testSubscriptRange),
+        ("testSubscriptIndex", testSubscriptIndex),
+        ("testSubscriptRange", testSubscriptRange),
         ("testSubscriptRangeEmpty", testSubscriptRangeEmpty),
         ("testSubscriptRangeOutOfBounds", testSubscriptRangeOutOfBounds),
         ("testSubscriptClosedRangeEmoji", testSubscriptClosedRangeEmoji),
