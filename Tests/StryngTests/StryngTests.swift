@@ -90,6 +90,14 @@ class StryngTests: XCTestCase {
         XCTAssertEqual(example[left..<right], "xa")
     }
 
+    func testSubscriptOfSingleCharacterOccurence() {
+        let example = "Example Example"
+        let occurences = example[Character("a")]
+        XCTAssertEqual(occurences.count, 2)
+        XCTAssertEqual(example[occurences[0]], "a")
+        XCTAssertEqual(example[occurences[1]], "a")
+    }
+
     func testSubscriptOfSubstringOccurences() {
         let example = "Example Example"
         let occurences = example["xa"]
@@ -179,6 +187,7 @@ class StryngTests: XCTestCase {
         ("testSubscriptPartialRangeThroughToOutOfBounds", testSubscriptPartialRangeThroughToOutOfBounds),
         ("testSubscriptPartialRangeFrom", testSubscriptPartialRangeFrom),
         ("testSubscriptPartialRangeFromOutOfBounds", testSubscriptPartialRangeFromOutOfBounds),
+        ("testSubscriptOfSingleCharacterOccurence", testSubscriptOfSingleCharacterOccurence),
         ("testSubscriptOfSubstringOccurence", testSubscriptOfSubstringOccurence),
         ("testSubscriptOfSubstringOccurences", testSubscriptOfSubstringOccurences),
         ("testSubscriptOfStringsClosedRange", testSubscriptOfStringsClosedRange),

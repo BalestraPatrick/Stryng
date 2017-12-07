@@ -86,6 +86,18 @@ extension String {
         return occurences
     }
 
+    // String[Character("a")]
+    public subscript(character: Character) -> [String.Index] {
+        var occurences = [String.Index]()
+        var initialLeftBound = startIndex
+        while initialLeftBound < endIndex {
+            guard let beginRange = self.range(of: String(character), options: [], range: initialLeftBound..<endIndex, locale: nil) else { break }
+            occurences.append(beginRange.lowerBound)
+            initialLeftBound = beginRange.upperBound
+        }
+        return occurences
+    }
+
     // String["begin"...]
     public subscript(range: PartialRangeFrom<String>) -> PartialRangeFrom<String.Index>? {
         guard (self + range.lowerBound.count) != nil else { return nil }
