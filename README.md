@@ -1,3 +1,24 @@
+<p align="center"><img src="header.png"/></p>
+
+
+<p align="center">
+    <a href="https://travis-ci.org/BalestraPatrick/Stryng">
+        <img src="https://dashboard.buddybuild.com/api/statusImage?appID=594d396430fb80000135db8f&branch=master&build=latest" alt="buddybuild" />
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat" alt="Carthage" />
+    </a>
+    <a href="http://cocoapods.org/pods/Stryng">
+        <img src="https://img.shields.io/cocoapods/l/Stryng.svg?style=flat" alt="License" />
+    </a>
+    <a href="http://cocoapods.org/pods/Stryng">
+        <img src="https://img.shields.io/cocoapods/p/Stryng.svg?style=flat" alt="Platform" />
+    </a>
+    <a href="https://twitter.com/BalestraPatrick">
+        <img src="https://img.shields.io/badge/contact-@BalestraPatrick-yellow.svg?style=flat" alt="Twitter: @BalestraPatrick" />
+    </a>
+</p>
+
 # Stryng
 String utilities to make your life easier. Swift's strings management is one of the most painful feature of the language. Sure, it's great to have Unicode correctness and efficiency, but this comes at a cost: too much verbosity and complexity.
 
@@ -9,20 +30,30 @@ Retrieve a single character at a specific position.
 
 ```swift
 let string = "Example"
-// Without
-string[self.index(startIndex, offsetBy: 1)] // "x"
 // With Stryng
 string[1] // "x"
+// Without
+string[self.index(startIndex, offsetBy: 1)] // "x"
 ```
 
-Retrieve a string between two indices.
+Retrieve the substring up to a specific index.
 
 ```swift
 let string = "Example"
-// Without
-string[string(string, offsetBy: 0)..<string(string, offsetBy: 2)] // "Ex"
 // With Stryng
-string[0..<2] // "Ex"
+string[..<2] // "Ex"
+// Without
+string[..<string.index(string.startIndex, offsetBy: 2)] // "Ex"
+```
+
+Retrieve the substring between two indices.
+
+```swift
+let string = "Example"
+// With Stryng
+string[1..<6] // "xampl"
+// Without
+string[string.index(string.startIndex, offsetBy: 1)..<string.index(string.startIndex, offsetBy: 6)] // "Ex"
 ```
 
 Retrieve positions of a all substring occurences.
@@ -30,6 +61,47 @@ Retrieve positions of a all substring occurences.
 ```swift
 let string = "Example Example"
 let occurences = string["xa"] // Returns a [Range<String.Index>] containing all positions of the subtring.
+```
+
+## Usage
+This is an up to date list of the supported subscripts. Take a look at the `Tests` to if you're not sure how to use `Stryng`.
+
+```swift
+// String[1]
+public subscript(index: Int) -> Character?
+
+// String[0..<1]
+public subscript(range: Range<Int>) -> Substring?
+
+// String[0...1]
+public subscript(range: ClosedRange<Int>) -> Substring?
+
+// String[..<1]
+public subscript(value: PartialRangeUpTo<Int>) -> Substring?
+
+// String[...1]
+public subscript(value: PartialRangeThrough<Int>) -> Substring?
+
+// String[1...]
+public subscript(value: PartialRangeFrom<Int>) -> Substring?
+
+// String["substring"]
+public subscript(_ string: String) -> [Range<String.Index>]
+
+// String["begin"..."end"]
+public subscript(range: ClosedRange<String>) -> [ClosedRange<String.Index>]
+
+// String["begin"..<"end"]
+public subscript(range: Range<String>) -> [Range<String.Index>]
+
+// String[Character("a")]
+public subscript(character: Character) -> [String.Index]
+
+// String["begin"...]
+public subscript(range: PartialRangeFrom<String>) -> PartialRangeFrom<String.Index>?
+
+// String[..."end"]
+public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<String.Index>?
 ```
 
 ## Disclosure
