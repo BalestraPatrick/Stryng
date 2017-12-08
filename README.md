@@ -110,10 +110,17 @@ If you need to get a character at a specific index, in one way or another you wi
 
 This is why Stryng is here to help you.
 
+## Contribute
+We'd love your help. 
+Head over to the [issues](https://github.com/BalestraPatrick/Stryng/issues) with your feedback. 
+Bonus points if you open a [Pull request](https://github.com/BalestraPatrick/Stryng/pulls) with a failing test for a bug or a new feature! ⭐️
+
 ## Author
 
 I'm [Patrick Balestra](http://www.patrickbalestra.com).
+
 Email: [me@patrickbalestra.com](mailto:me@patrickbalestra.com)
+
 Twitter: [@BalestraPatrick](http://twitter.com/BalestraPatrick).
 
 ## License
