@@ -12,75 +12,75 @@ import Stryng
 
 class StryngTests: XCTestCase {
 
-    func testSubscriptIndex() {
+    func testIndex() {
         let example = "Example"
         XCTAssertEqual(example[1], "x")
     }
 
-    func testSubscriptRange() {
+    func testRange() {
         let example = "Example"
         XCTAssertEqual(example[0..<2], "Ex")
     }
 
-    func testSubscriptRangeEmpty() {
+    func testRangeEmpty() {
         let example = "Example"
         XCTAssertEqual(example[0..<0], "")
     }
 
-    func testSubscriptRangeOutOfBounds() {
+    func testRangeOutOfBounds() {
         let example = "Example"
         XCTAssertNil(example[10..<12])
         XCTAssertNil(example[0..<12])
     }
 
-    func testSubscriptClosedRangeEmoji() {
+    func testClosedRangeEmoji() {
         let example = "👨‍👩‍👧‍👧"
         XCTAssertEqual(example[0...0], "👨‍👩‍👧‍👧")
     }
 
-    func testSubscriptClosedRangeOutOfBounds() {
+    func testClosedRangeOutOfBounds() {
         let example = "Example"
         XCTAssertNil(example[0...8])
         XCTAssertNil(example[10...11])
     }
 
-    func testSubscriptPartialRangeUpTo() {
+    func testPartialRangeUpTo() {
         let example = "Example"
         let result = example[..<1]
         XCTAssertEqual(result, "E")
     }
 
-    func testSubscriptPartialRangeUpToOutOfBounds() {
+    func testPartialRangeUpToOutOfBounds() {
         let example = "Example"
         let result = example[..<8]
         XCTAssertNil(result)
     }
 
-    func testSubscriptPartialRangeThroughTo() {
+    func testPartialRangeThroughTo() {
         let example = "Example"
         let result = example[...1]
         XCTAssertEqual(result, "Ex")
     }
 
-    func testSubscriptPartialRangeThroughToOutOfBounds() {
+    func testPartialRangeThroughToOutOfBounds() {
         let example = "Example"
         let result = example[...8]
         XCTAssertNil(result)
     }
 
-    func testSubscriptPartialRangeFrom() {
+    func testPartialRangeFrom() {
         let example = "Example"
         let result = example[1...]
         XCTAssertEqual(result, "xample")
     }
 
-    func testSubscriptPartialRangeFromOutOfBounds() {
+    func testPartialRangeFromOutOfBounds() {
         let example = "Example"
         let result = example[10...]
         XCTAssertNil(result)
     }
 
-    func testSubscriptOfSubstringOccurence() {
+    func testSubstringOccurence() {
         let example = "Example"
         let occurence = example["xa"].first
         let left = example.distance(from: example.startIndex, to: occurence!.lowerBound)
@@ -90,7 +90,7 @@ class StryngTests: XCTestCase {
         XCTAssertEqual(example[left..<right], "xa")
     }
 
-    func testSubscriptOfSingleCharacterOccurence() {
+    func testSingleCharacterOccurence() {
         let example = "Example Example"
         let occurences = example[Character("a")]
         XCTAssertEqual(occurences.count, 2)
@@ -98,7 +98,7 @@ class StryngTests: XCTestCase {
         XCTAssertEqual(example[occurences[1]], "a")
     }
 
-    func testSubscriptOfSubstringOccurences() {
+    func testSubstringOccurences() {
         let example = "Example Example"
         let occurences = example["xa"]
         XCTAssertEqual(occurences.count, 2)
@@ -118,7 +118,7 @@ class StryngTests: XCTestCase {
         }
     }
 
-    func testSubscriptOfStringsClosedRange() {
+    func testStringsClosedRange() {
         let example = "Example Example"
         let occurences = example["E"..."e"]
         XCTAssertEqual(occurences.count, 2)
@@ -138,7 +138,7 @@ class StryngTests: XCTestCase {
         }
     }
 
-    func testSubscriptOfStringsRange() {
+    func testStringsRange() {
         let example = "Example Example"
         let occurences = example["E"..<"e"]
         XCTAssertEqual(occurences.count, 2)
@@ -158,7 +158,7 @@ class StryngTests: XCTestCase {
         }
     }
 
-    func testSubscriptOfStringPartialRangeFrom() {
+    func testStringPartialRangeFrom() {
         let example = "Example Example"
         let occurence = example["Example "...]!
         let left = example.distance(from: example.startIndex, to: occurence.lowerBound)
@@ -166,7 +166,7 @@ class StryngTests: XCTestCase {
         XCTAssertEqual(example[left...], "Example")
     }
 
-    func testSubscriptOfStringRangeThroughTo() {
+    func testStringRangeThroughTo() {
         let example = "Example Example"
         let occurence = example[..." Example"]!
         let right = example.distance(from: example.startIndex, to: occurence.upperBound)
@@ -175,23 +175,23 @@ class StryngTests: XCTestCase {
     }
     
     static var allTests = [
-        ("testSubscriptIndex", testSubscriptIndex),
-        ("testSubscriptRange", testSubscriptRange),
-        ("testSubscriptRangeEmpty", testSubscriptRangeEmpty),
-        ("testSubscriptRangeOutOfBounds", testSubscriptRangeOutOfBounds),
-        ("testSubscriptClosedRangeEmoji", testSubscriptClosedRangeEmoji),
-        ("testSubscriptClosedRangeOutOfBounds", testSubscriptClosedRangeOutOfBounds),
-        ("testSubscriptPartialRangeUpTo", testSubscriptPartialRangeUpTo),
-        ("testSubscriptPartialRangeUpToOutOfBounds", testSubscriptPartialRangeUpToOutOfBounds),
-        ("testSubscriptPartialRangeThroughTo", testSubscriptPartialRangeThroughTo),
-        ("testSubscriptPartialRangeThroughToOutOfBounds", testSubscriptPartialRangeThroughToOutOfBounds),
-        ("testSubscriptPartialRangeFrom", testSubscriptPartialRangeFrom),
-        ("testSubscriptPartialRangeFromOutOfBounds", testSubscriptPartialRangeFromOutOfBounds),
-        ("testSubscriptOfSingleCharacterOccurence", testSubscriptOfSingleCharacterOccurence),
-        ("testSubscriptOfSubstringOccurence", testSubscriptOfSubstringOccurence),
-        ("testSubscriptOfSubstringOccurences", testSubscriptOfSubstringOccurences),
-        ("testSubscriptOfStringsClosedRange", testSubscriptOfStringsClosedRange),
-        ("testSubscriptOfStringsRange", testSubscriptOfStringsRange),
-        ("testSubscriptOfStringPartialRangeFrom", testSubscriptOfStringPartialRangeFrom)
+        ("testIndex", testIndex),
+        ("testRange", testRange),
+        ("testRangeEmpty", testRangeEmpty),
+        ("testRangeOutOfBounds", testRangeOutOfBounds),
+        ("testClosedRangeEmoji", testClosedRangeEmoji),
+        ("testClosedRangeOutOfBounds", testClosedRangeOutOfBounds),
+        ("testPartialRangeUpTo", testPartialRangeUpTo),
+        ("testPartialRangeUpToOutOfBounds", testPartialRangeUpToOutOfBounds),
+        ("testPartialRangeThroughTo", testPartialRangeThroughTo),
+        ("testPartialRangeThroughToOutOfBounds", testPartialRangeThroughToOutOfBounds),
+        ("testPartialRangeFrom", testPartialRangeFrom),
+        ("testPartialRangeFromOutOfBounds", testPartialRangeFromOutOfBounds),
+        ("testSingleCharacterOccurence", testSingleCharacterOccurence),
+        ("testSubstringOccurence", testSubstringOccurence),
+        ("testSubstringOccurences", testSubstringOccurences),
+        ("testStringsClosedRange", testStringsClosedRange),
+        ("testStringsRange", testStringsRange),
+        ("testStringPartialRangeFrom", testStringPartialRangeFrom)
     ]
 }
