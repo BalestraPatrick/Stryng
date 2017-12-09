@@ -20,9 +20,9 @@
 </p>
 
 # Stryng
-String utilities to make your life easier. Swift's strings management is one of the most painful feature of the language. Sure, it's great to have Unicode correctness and efficiency, but this comes at a cost: too much verbosity and complexity.
+`Stryng` is designed to make it easier to work with strings by using the common and easy to remember subscript syntax and accessing characters and ranges with `Int` indices.
 
-`Stryng` is designed to make it easier to work with strings by using the common and easy to remember subscript syntax.
+Swift's strings management is one of the most painful feature of the language. Sure, it's great to have Unicode correctness and efficiency, but this comes at a cost: too much verbosity and complexity.
 
 ## Examples
 
@@ -63,8 +63,15 @@ let string = "Example Example"
 let occurences = string["xa"] // Returns a [Range<String.Index>] containing all positions of the subtring.
 ```
 
+Convert a `Substring` to a `String`.
+
+```swift
+let example = "Example"
+example[1...5].string // Returns a `String?` instead of a `Substring?`
+```
+
 ## Usage
-This is an up to date list of the supported subscripts. Take a look at the `Tests` to if you're not sure how to use `Stryng`.
+This is an up to date list of the supported subscripts. Take a look at [`StryngTests.swift`](https://github.com/BalestraPatrick/Stryng/blob/master/Tests/StryngTests/StryngTests.swift)  if you want to see some more real code examples.
 
 ```swift
 // String[1]
@@ -86,7 +93,7 @@ public subscript(value: PartialRangeThrough<Int>) -> Substring?
 public subscript(value: PartialRangeFrom<Int>) -> Substring?
 
 // String["substring"]
-public subscript(_ string: String) -> [Range<String.Index>]
+public subscript(string: String) -> [Range<String.Index>]
 
 // String["begin"..."end"]
 public subscript(range: ClosedRange<String>) -> [ClosedRange<String.Index>]
@@ -106,7 +113,7 @@ public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<Stri
 
 ## Disclosure
 Yes, string traversal in Swift can be slow. The reason why these subscripts don't exist in the standard library is that some people think that it hides the performance implications of traversing a string. Traversing a string from the `startIndex` until the `endIndex` has complexity O(n). 
-If you need to get a character at a specific index, in one way or another you will have to traverse the string, but why would you need 3 lines of code instead of 1 to do that if you know what you're doing? 
+If you need to get a character at a specific index, in one way or another you will have to traverse the string, but why would you need 3 lines of code instead of 1 to do that if you know what you're doing?
 
 This is why Stryng is here to help you.
 

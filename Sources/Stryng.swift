@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
 
     // String[1]
     public subscript(index: Int) -> Character? {
@@ -32,24 +32,24 @@ extension String {
 
     // String[..<1]
     public subscript(value: PartialRangeUpTo<Int>) -> Substring? {
-        guard let right = self + value.upperBound else { return nil }
+        guard let right = self.indexOffset(by: value.upperBound) else { return nil }
         return self[..<right]
     }
 
     // String[...1]
     public subscript(value: PartialRangeThrough<Int>) -> Substring? {
-        guard let right = self + value.upperBound else { return nil }
+        guard let right = self.indexOffset(by: value.upperBound) else { return nil }
         return self[...right]
     }
 
     // String[1...]
     public subscript(value: PartialRangeFrom<Int>) -> Substring? {
-        guard let left = self + value.lowerBound else { return nil }
+        guard let left = self.indexOffset(by: value.lowerBound) else { return nil }
         return self[left...]
     }
 
     // String["substring"]
-    public subscript(_ string: String) -> [Range<String.Index>] {
+    public subscript(string: String) -> [Range<String.Index>] {
         var occurences = [Range<String.Index>]()
         var initialLeftBound = startIndex
         while initialLeftBound < endIndex {
@@ -100,20 +100,38 @@ extension String {
 
     // String["begin"...]
     public subscript(range: PartialRangeFrom<String>) -> PartialRangeFrom<String.Index>? {
-        guard (self + range.lowerBound.count) != nil else { return nil }
+        guard self.indexOffset(by: range.lowerBound.count) != nil else { return nil }
         guard let beginRange = self.range(of: range.lowerBound, options: [], range: startIndex..<endIndex, locale: nil) else { return nil }
         return beginRange.upperBound...
     }
 
     // String[..."end"]
     public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<String.Index>? {
-        guard (self + range.upperBound.count) != nil else { return nil }
+        guard self.indexOffset(by: range.upperBound.count) != nil else { return nil }
         guard let endRange = self.range(of: range.upperBound, options: [], range: startIndex..<endIndex, locale: nil) else { return nil }
         return ...endRange.lowerBound
     }
+}
+
+public extension Substring {
+
+    var string: String {
+        return String(self)
+    }
+}
+
+public extension Optional where Wrapped == Substring {
+
+    var string: String? {
+        guard let substring = self else { return nil }
+        return String(substring)
+    }
+}
+
+extension String {
 
     // String + 1
-    static internal func + (string: String, distance: Int) -> String.Index? {
-        return string.index(string.startIndex, offsetBy: distance, limitedBy: string.endIndex)
+    func indexOffset(by distance: Int) -> String.Index? {
+        return index(startIndex, offsetBy: distance, limitedBy: endIndex)
     }
 }
