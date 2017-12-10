@@ -1,8 +1,8 @@
 <p align="center"><img src="header.png"/></p>
 
 <p align="center">
-    <a href="https://dashboard.buddybuild.com/apps/5a2d6b86b0d15a00018e4e80/build/latest?branch=master">
-        <img src="https://dashboard.buddybuild.com/api/statusImage?appID=5a2d6b86b0d15a00018e4e80&branch=master&build=latest" alt="buddybuild" />
+    <a href="https://dashboard.buddybuild.com/apps/5a2daf55ed9a900001c6dc1b/build/latest?branch=master">
+        <img src="https://dashboard.buddybuild.com/api/statusImage?appID=5a2daf55ed9a900001c6dc1b&branch=master&build=latest" alt="buddybuild" />
     </a>
     <a href="https://github.com/Carthage/Carthage">
         <img src="https://img.shields.io/badge/carthage-compatible-4BC51D.svg?style=flat" alt="Carthage" />
