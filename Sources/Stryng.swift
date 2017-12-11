@@ -18,15 +18,15 @@ public extension String {
 
     // String[0..<1]
     public subscript(range: Range<Int>) -> Substring? {
-        guard let left = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex) else { return nil }
-        guard let right = index(startIndex, offsetBy: range.upperBound, limitedBy: endIndex) else { return nil }
+        guard let left = indexOffset(by: range.lowerBound) else { return nil }
+        guard let right = index(left, offsetBy: range.upperBound - range.lowerBound, limitedBy: endIndex) else { return nil }
         return self[left..<right]
     }
 
     // String[0...1]
     public subscript(range: ClosedRange<Int>) -> Substring? {
-        guard let left = index(startIndex, offsetBy: range.lowerBound, limitedBy: endIndex) else { return nil }
-        guard let right = index(startIndex, offsetBy: range.upperBound, limitedBy: endIndex) else { return nil }
+        guard let left = indexOffset(by: range.lowerBound) else { return nil }
+        guard let right = index(left, offsetBy: range.upperBound - range.lowerBound, limitedBy: endIndex) else { return nil }
         return self[left...right]
     }
 
