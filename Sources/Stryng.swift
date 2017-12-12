@@ -19,12 +19,17 @@ public extension String {
     // String[0..<1]
     public subscript(range: Range<Int>) -> Substring? {
         guard let left = indexOffset(by: range.lowerBound) else { return nil }
-        guard let right = index(left, offsetBy: range.upperBound - range.lowerBound, limitedBy: endIndex) else { return nil }
+        guard let right = index(left, offsetBy: range.upperBound - range.lowerBound, 
+                                limitedBy: endIndex) else { return nil }
         return self[left..<right]
     }
 
     // String[0...1]
     public subscript(range: ClosedRange<Int>) -> Substring? {
+        if range.upperBound < 0 {
+            guard abs(range.lowerBound) <= count else { return nil }
+            return self[(count - abs(range.lowerBound))...]
+        }
         guard let left = indexOffset(by: range.lowerBound) else { return nil }
         guard let right = index(left, offsetBy: range.upperBound - range.lowerBound, limitedBy: endIndex) else { return nil }
         return self[left...right]
@@ -32,7 +37,11 @@ public extension String {
 
     // String[..<1]
     public subscript(value: PartialRangeUpTo<Int>) -> Substring? {
-        guard let right = self.indexOffset(by: value.upperBound) else { return nil }
+        if value.upperBound < 0 {
+            guard abs(value.upperBound) <= count else { return nil }
+            return self[..<(count - abs(value.upperBound))]
+        }
+        guard let right = indexOffset(by: value.upperBound) else { return nil }
         return self[..<right]
     }
 

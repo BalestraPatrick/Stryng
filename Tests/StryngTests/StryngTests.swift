@@ -42,6 +42,11 @@ class StryngTests: XCTestCase {
         let example = "Example"
         XCTAssertNil(example[0...8])
         XCTAssertNil(example[10...11])
+        
+        XCTAssertEqual(example[-2...(-1)], "le")
+        XCTAssertEqual(example[-4...(-1)], "mple")
+        XCTAssertNil(example[-10...(-1)])
+
     }
 
     func testPartialRangeUpTo() {
@@ -54,6 +59,10 @@ class StryngTests: XCTestCase {
         let example = "Example"
         let result = example[..<8]
         XCTAssertNil(result)
+        
+        XCTAssertEqual(example[..<(-1)], "Exampl")
+        XCTAssertEqual(example[..<(-3)], "Exam")
+        
     }
 
     func testPartialRangeThroughTo() {
