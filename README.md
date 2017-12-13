@@ -32,7 +32,7 @@ let string = "Example"
 // With Stryng
 string[1] // "x"
 // Without
-string[self.index(startIndex, offsetBy: 1)] // "x"
+string[string.index(string.startIndex, offsetBy: 1)] // "x"
 ```
 
 Retrieve the substring up to a specific index.
