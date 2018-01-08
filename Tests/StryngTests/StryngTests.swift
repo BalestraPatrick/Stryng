@@ -17,6 +17,12 @@ class StryngTests: XCTestCase {
         XCTAssertEqual(example[1], "x")
     }
 
+    func testEmptyStringIndexOutOfBounds() {
+        let example = ""
+        XCTAssertNil(example[0])
+        XCTAssertNil(example[1])
+    }
+
     func testIndexOutOfBounds() {
         let example = "Example"
         XCTAssertNil(example[7])
