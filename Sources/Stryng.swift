@@ -12,7 +12,7 @@ public extension String {
 
     // String[1]
     public subscript(index: Int) -> Character? {
-        guard let stringIndex = self.index(startIndex, offsetBy: index, limitedBy: endIndex) else { return nil }
+        guard let stringIndex = self.index(startIndex, offsetBy: index, limitedBy: self.index(before: endIndex)) else { return nil }
         return self[stringIndex]
     }
 
