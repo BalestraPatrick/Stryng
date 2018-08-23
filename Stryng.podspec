@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Stryng"
-  s.version      = "0.3"
+  s.version      = "0.4"
   s.summary      = "Stop crying when accessing Swift Strings."
   s.description  = <<-DESC
     Stryng is designed to make it easier to work with strings by using the common and easy to remember subscript syntax and accessing characters and ranges with Int indices.
