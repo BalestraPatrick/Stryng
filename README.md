@@ -110,6 +110,19 @@ public subscript(range: PartialRangeFrom<String>) -> PartialRangeFrom<String.Ind
 public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<String.Index>?
 ```
 
+## Installation (Swift Package Manager)
+In your `Package.swift` file, add the following line to your `dependencies` array:
+
+```
+.package(url: "https://github.com/BalestraPatrick/Stryng.git", from: "0.4.1")
+```
+
+Then, in your terminal, run the following command to update your dependencies:
+
+```
+$ swift package update
+```
+
 ## Disclosure
 Yes, string traversal in Swift can be slow. The reason why these subscripts don't exist in the standard library is that some people think that it hides the performance implications of traversing a string. Traversing a string from the `startIndex` until the `endIndex` has complexity O(n). 
 If you need to get a character at a specific index, in one way or another you will have to traverse the string, but why would you need 3 lines of code instead of 1 to do that if you know what you're doing?
