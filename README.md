@@ -116,7 +116,7 @@ public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<Stri
 
 To install via [Cocoapods](http://cocoapods.org/), add the following line to your Podfile:
 
-```
+```ruby
 pod Stryng
 ```
 
@@ -124,7 +124,7 @@ pod Stryng
 
 To install via the [Swift Package Manager](https://swift.org/package-manager/), add the following line to the `dependencies` array in your `Package.swift` file:
 
-```
+```swift
 .package(url: "https://github.com/BalestraPatrick/Stryng.git", from: "0.4.1")
 ```
 
@@ -132,7 +132,7 @@ Then, still in your `Package.swift`, add `"Stryng"` to your *target's* `dependen
 
 Finally, in your terminal, run the following command to update your dependencies:
 
-```
+```bash
 $ swift package update
 ```
 
