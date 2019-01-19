@@ -110,14 +110,27 @@ public subscript(range: PartialRangeFrom<String>) -> PartialRangeFrom<String.Ind
 public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<String.Index>?
 ```
 
-## Installation (Swift Package Manager)
-In your `Package.swift` file, add the following line to your `dependencies` array:
+## Installation
+
+### Cocoapods
+
+To install via [Cocoapods](http://cocoapods.org/), add the following line to your Podfile:
+
+```
+pod Stryng
+```
+
+### Swift Package Manager
+
+To install via the [Swift Package Manager](https://swift.org/package-manager/), add the following line to the `dependencies` array in your `Package.swift` file:
 
 ```
 .package(url: "https://github.com/BalestraPatrick/Stryng.git", from: "0.4.1")
 ```
 
-Then, in your terminal, run the following command to update your dependencies:
+Then, still in your `Package.swift`, add `"Stryng"` to your *target's* `dependencies` array.
+
+Finally, in your terminal, run the following command to update your dependencies:
 
 ```
 $ swift package update
