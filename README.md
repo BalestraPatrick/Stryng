@@ -117,7 +117,7 @@ public subscript(range: PartialRangeThrough<String>) -> PartialRangeThrough<Stri
 To install via [Cocoapods](http://cocoapods.org/), add the following line to your Podfile:
 
 ```ruby
-pod Stryng
+pod 'Stryng'
 ```
 
 ### Swift Package Manager
